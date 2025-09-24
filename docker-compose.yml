@@ -1,0 +1,75 @@
+version: "3.9"
+
+services:
+  # -----------------------
+  # Database
+  # -----------------------
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: shortener
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  # -----------------------
+  # Redis (for redirects + hits counter)
+  # -----------------------
+  redis:
+    image: redis:7
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+        
+  auth:
+    build: ./auth
+    env_file: .env.example
+    depends_on:
+      - db
+    ports:
+      - "8081:8081"
+
+  crudservice:   # ✅ lowercase
+    build: ./crudService
+    env_file: .env.example
+    depends_on:
+      - db
+    ports:
+      - "8082:8082"
+
+  redirectservice:   # ✅ lowercase
+    build: ./redirectService
+    env_file: .env.example
+    depends_on:
+      - db
+      - redis
+    ports:
+      - "8083:8083"
+
+  jobrunner:    # ✅ lowercase
+    build: ./jobRunner
+    env_file: .env.example
+    depends_on:
+      - db
+      - redis
+
+  gateway:
+    build: ./gateway
+    env_file: .env.example
+    depends_on:
+      - auth
+      - crudservice
+      - redirectservice
+    ports:
+      - "8080:8080"
+
+volumes:
+  db_data:
+  redis_data:
