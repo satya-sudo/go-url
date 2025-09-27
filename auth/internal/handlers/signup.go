@@ -1,10 +1,10 @@
 package handlers
 
 import (
-	"auth/internal/db"
-	"auth/internal/models"
-	"auth/internal/utils"
 	"context"
+	"github.com/satya-sudo/go-url/auth/internal/db"
+	"github.com/satya-sudo/go-url/auth/internal/models"
+	"github.com/satya-sudo/go-url/auth/internal/utils"
 	"net/http"
 
 	"github.com/gofiber/fiber/v2"

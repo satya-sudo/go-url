@@ -3,8 +3,8 @@ package handlers
 import (
 	"context"
 	"fmt"
+	"github.com/satya-sudo/go-url/redirectService/internal/db"
 	"net/http"
-	"redirectService/internal/db"
 	"time"
 
 	"github.com/gofiber/fiber/v2"

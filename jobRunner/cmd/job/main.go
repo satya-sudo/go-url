@@ -1,9 +1,9 @@
 package main
 
 import (
-	"jobRunner/internal/config"
-	"jobRunner/internal/db"
-	"jobRunner/internal/jobs"
+	"github.com/satya-sudo/go-url/jobRunner/internal/config"
+	"github.com/satya-sudo/go-url/jobRunner/internal/db"
+	"github.com/satya-sudo/go-url/jobRunner/internal/jobs"
 	"log"
 	"time"
 )

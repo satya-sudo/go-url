@@ -1,9 +1,9 @@
 package main
 
 import (
-	"crudService/internal/config"
-	"crudService/internal/db"
-	"crudService/internal/router"
+	"github.com/satya-sudo/go-url/crudService/internal/config"
+	"github.com/satya-sudo/go-url/crudService/internal/db"
+	"github.com/satya-sudo/go-url/crudService/internal/router"
 	"log"
 
 	"github.com/gofiber/fiber/v2"

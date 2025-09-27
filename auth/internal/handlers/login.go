@@ -1,9 +1,9 @@
 package handlers
 
 import (
-	"auth/internal/db"
-	"auth/internal/utils"
 	"context"
+	"github.com/satya-sudo/go-url/auth/internal/db"
+	"github.com/satya-sudo/go-url/auth/internal/utils"
 	"net/http"
 	"os"
 	"time"

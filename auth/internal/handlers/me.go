@@ -1,9 +1,9 @@
 package handlers
 
 import (
-	"auth/internal/db"
 	"context"
 	"github.com/gofiber/fiber/v2"
+	"github.com/satya-sudo/go-url/auth/internal/db"
 	"net/http"
 )
 

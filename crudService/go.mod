@@ -1,4 +1,4 @@
-module crudService
+module github.com/satya-sudo/go-url/crudService
 
 go 1.25.0
 

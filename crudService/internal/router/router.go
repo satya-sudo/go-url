@@ -1,7 +1,7 @@
 package router
 
 import (
-	"crudService/internal/handlers"
+	"github.com/satya-sudo/go-url/crudService/internal/handlers"
 
 	"github.com/gofiber/fiber/v2"
 )

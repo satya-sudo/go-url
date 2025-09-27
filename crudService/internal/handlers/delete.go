@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"auth/internal/db"
 	"context"
+	"github.com/satya-sudo/go-url/crudService/internal/db"
 	"net/http"
 
 	"github.com/gofiber/fiber/v2"

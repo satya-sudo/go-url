@@ -1,7 +1,7 @@
 package router
 
 import (
-	"auth/internal/handlers"
+	"github.com/satya-sudo/go-url/auth/internal/handlers"
 
 	"github.com/gofiber/fiber/v2"
 )

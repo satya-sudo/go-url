@@ -7,9 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"jobRunner/internal/db"
-
-	"github.com/redis/go-redis/v9"
+	"github.com/satya-sudo/go-url/jobRunner/internal/db"
 )
 
 // SyncHits moves counters from Redis -> Postgres

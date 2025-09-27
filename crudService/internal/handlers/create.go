@@ -1,11 +1,10 @@
 package handlers
 
 import (
-	"auth/internal/db"
-	"auth/internal/models"
 	"context"
 	"crypto/rand"
 	"encoding/base64"
+	"github.com/satya-sudo/go-url/crudService/internal/db"
 	"net/http"
 	"time"
 

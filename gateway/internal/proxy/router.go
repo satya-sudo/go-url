@@ -4,8 +4,8 @@ import (
 	"net/http/httputil"
 	"net/url"
 
-	"gateway/internal/config"
 	"github.com/gin-gonic/gin"
+	"github.com/satya-sudo/go-url/gateway/internal/config"
 )
 
 func SetupRouter(cfg config.Config) *gin.Engine {

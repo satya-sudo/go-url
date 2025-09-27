@@ -3,10 +3,10 @@ package main
 import (
 	"log"
 
-	"auth/internal/config"
-	"auth/internal/db"
-	"auth/internal/router"
 	"github.com/gofiber/fiber/v2"
+	"github.com/satya-sudo/go-url/auth/internal/config"
+	"github.com/satya-sudo/go-url/auth/internal/db"
+	"github.com/satya-sudo/go-url/auth/internal/router"
 )
 
 func main() {

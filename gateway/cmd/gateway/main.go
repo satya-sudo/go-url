@@ -3,10 +3,9 @@ package main
 import (
 	"log"
 	"net/http"
-	"os"
 
-	"gateway/internal/config"
-	"gateway/internal/proxy"
+	"github.com/satya-sudo/go-url/gateway/internal/config"
+	"github.com/satya-sudo/go-url/gateway/internal/proxy"
 )
 
 func main() {

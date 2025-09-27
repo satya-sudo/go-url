@@ -3,9 +3,9 @@ package main
 import (
 	"log"
 
-	"redirectService/internal/config"
-	"redirectService/internal/db"
-	"redirectService/internal/router"
+	"github.com/satya-sudo/go-url/redirectService/internal/config"
+	"github.com/satya-sudo/go-url/redirectService/internal/db"
+	"github.com/satya-sudo/go-url/redirectService/internal/router"
 
 	"github.com/gofiber/fiber/v2"
 )

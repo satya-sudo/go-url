@@ -1,8 +1,5 @@
-FROM golang:1.21-alpine AS build
+FROM golang:1.25-trixie AS build
 WORKDIR /app
-
-# Install git for go mod tidy if needed
-RUN apk add --no-cache git
 
 # Copy go modules first for better caching
 COPY go.mod go.sum ./
@@ -12,10 +9,10 @@ RUN go mod download
 COPY . .
 
 # Build the binary
-RUN go build -o /gateway ./main.go
+RUN go build -o /gateway ./cmd/gateway/main.go
 
 # Small runtime image
-FROM alpine:3.18
+FROM debian:trixie-slim
 WORKDIR /
 COPY --from=build /gateway /gateway
 
