@@ -70,6 +70,12 @@ services:
     ports:
       - "${GATEWAY_PORT}:${GATEWAY_PORT}"
 
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"   # host:container (browser opens at http://localhost:3000)
+    depends_on:
+      - gateway
 volumes:
   db_data:
   redis_data:
