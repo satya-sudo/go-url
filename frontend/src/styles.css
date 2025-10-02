@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.navbar {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    background: #222;
+    color: #fff;
+}
+
+.navbar a,
+.navbar button {
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 300px;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 6px;
+    cursor: pointer;
+}
+
+.stats {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: #fafafa;
+}

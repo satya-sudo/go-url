@@ -1,8 +1,10 @@
 package proxy
 
 import (
+	"github.com/gin-contrib/cors"
 	"net/http/httputil"
 	"net/url"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/satya-sudo/go-url/gateway/internal/config"
@@ -10,6 +12,15 @@ import (
 
 func SetupRouter(cfg config.Config) *gin.Engine {
 	r := gin.Default()
+	// Enable CORS
+	r.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"*"}, // for dev
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: false, // for dev
+		MaxAge:           12 * time.Hour,
+	}))
 
 	// 🔓 Public endpoints
 	r.Any("/auth/signup", reverseProxy(cfg.AuthService))
@@ -32,6 +43,7 @@ func SetupRouter(cfg config.Config) *gin.Engine {
 		protected.POST("/", reverseProxy(cfg.CrudService))
 		protected.DELETE("/:id", reverseProxy(cfg.CrudService))
 		protected.GET("/:id/stats", reverseProxy(cfg.CrudService))
+		protected.GET("/list/all", reverseProxy(cfg.CrudService))
 	}
 
 	return r

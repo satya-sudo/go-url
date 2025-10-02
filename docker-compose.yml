@@ -8,9 +8,9 @@ services:
     image: postgres:15
     restart: always
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: shortener
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - "5432:5432"
     volumes:
@@ -18,7 +18,7 @@ services:
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   # -----------------------
-  # Redis (for redirects + hits counter)
+  # Redis
   # -----------------------
   redis:
     image: redis:7
@@ -27,33 +27,33 @@ services:
       - "6379:6379"
     volumes:
       - redis_data:/data
-        
+
   auth:
     build: ./auth
     env_file: .env.example
     depends_on:
       - db
     ports:
-      - "8081:8081"
+      - "${AUTH_PORT}:${AUTH_PORT}"
 
-  crudservice:   # ✅ lowercase
+  crudservice:
     build: ./crudService
     env_file: .env.example
     depends_on:
       - db
     ports:
-      - "8082:8082"
+      - "${CRUD_PORT}:${CRUD_PORT}"
 
-  redirectservice:   # ✅ lowercase
+  redirectservice:
     build: ./redirectService
     env_file: .env.example
     depends_on:
       - db
       - redis
     ports:
-      - "8083:8083"
+      - "${REDIRECT_PORT}:${REDIRECT_PORT}"
 
-  jobrunner:    # ✅ lowercase
+  jobrunner:
     build: ./jobRunner
     env_file: .env.example
     depends_on:
@@ -68,7 +68,7 @@ services:
       - crudservice
       - redirectservice
     ports:
-      - "8080:8080"
+      - "${GATEWAY_PORT}:${GATEWAY_PORT}"
 
 volumes:
   db_data:

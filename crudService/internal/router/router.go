@@ -14,4 +14,5 @@ func Setup(app *fiber.App) {
 	shorten.Post("/", handlers.Create)        // POST /shorten
 	shorten.Delete("/:id", handlers.Delete)   // DELETE /shorten/:id
 	shorten.Get("/:id/stats", handlers.Stats) // GET /shorten/:id/stats
+	shorten.Get("/list/all", handlers.List)   // GET /shorten/list/all
 }

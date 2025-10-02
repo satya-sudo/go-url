@@ -28,7 +28,7 @@ func AuthMiddleware(secret string) gin.HandlerFunc {
 
 		// extract claims if they exist
 		if claims, ok := token.Claims.(jwt.MapClaims); ok {
-			if userID, exists := claims["user_id"]; exists {
+			if userID, exists := claims["sub"]; exists {
 				// attach to request context
 				c.Set("user_id", userID)
 				// forward to backend services
