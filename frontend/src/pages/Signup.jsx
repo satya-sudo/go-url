@@ -10,9 +10,7 @@ export default function Signup() {
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
 
-
     const validateEmail = (email) => {
-        // Simple RFC 5322 compliant regex
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     };
 
@@ -47,29 +45,36 @@ export default function Signup() {
     };
 
     return (
-        <form onSubmit={handleSignup} className="form">
-            <h2>Signup</h2>
-            <input
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-                placeholder="Password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <input
-                placeholder="Confirm Password"
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-            <button type="submit">Signup</button>
+        <div className="auth-container">
+            <form onSubmit={handleSignup} className="auth-form">
+                <h2 className="auth-title">Signup</h2>
+                <input
+                    className="auth-input"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+                <input
+                    className="auth-input"
+                    placeholder="Password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+                <input
+                    className="auth-input"
+                    placeholder="Confirm Password"
+                    type="password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+                <button type="submit" className="auth-button">
+                    Signup
+                </button>
 
-            {error && <p style={{ color: "red" }}>{error}</p>}
-            {success && <p style={{ color: "green" }}>{success}</p>}
-        </form>
+                {error && <p className="auth-error">{error}</p>}
+                {success && <p className="auth-success">{success}</p>}
+            </form>
+        </div>
     );
 }

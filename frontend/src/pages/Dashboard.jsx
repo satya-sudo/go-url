@@ -54,64 +54,69 @@ export default function Dashboard() {
     };
 
     return (
-        <div>
-            <h2>Your Shortened URLs</h2>
+        <div className="dashboard">
+            <h2 className="dashboard-title">Your Shortened URLs</h2>
 
-            <form onSubmit={handleCreate} style={{ marginBottom: "20px" }}>
+            <form onSubmit={handleCreate} className="dashboard-form">
                 <input
+                    className="dashboard-input"
                     placeholder="Enter long URL"
                     value={newUrl}
                     onChange={(e) => setNewUrl(e.target.value)}
-                    style={{ width: "300px", marginRight: "10px" }}
                 />
-                <button type="submit">Shorten</button>
+                <button type="submit" className="dashboard-button">Shorten</button>
             </form>
 
-            {error && <p style={{ color: "red" }}>{error}</p>}
+            {error && <p className="dashboard-error">{error}</p>}
 
             {urls.length === 0 ? (
-                <p>No URLs found.</p>
+                <p className="dashboard-empty">No URLs found.</p>
             ) : (
-                <table border="1" cellPadding="6" style={{ borderCollapse: "collapse" }}>
-                    <thead>
-                    <tr>
-                        <th>Short Code</th>
-                        <th>Long URL</th>
-                        <th>Created</th>
-                        <th>Expiration</th>
-                        <th>Hits</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {urls.map((u) => (
-                        <tr key={u.shortCode}>
-                            <td>
-                                <a
-                                    href={`http://localhost:8080/${u.shortCode}`}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    {u.shortCode}
-                                </a>
-                            </td>
-                            <td>{u.longUrl}</td>
-                            <td>{new Date(u.createdAt).toLocaleString()}</td>
-                            <td>
-                                {u.expirationAt
-                                    ? new Date(u.expirationAt).toLocaleString()
-                                    : "-"}
-                            </td>
-                            <td>{u.hits}</td>
-                            <td>
-                                <button onClick={() => handleDeleteClick(u.shortCode)}>
-                                    Delete
-                                </button>
-                            </td>
+                <div className="dashboard-table-container">
+                    <table className="dashboard-table">
+                        <thead>
+                        <tr>
+                            <th>Short Code</th>
+                            <th>Long URL</th>
+                            <th>Created</th>
+                            <th>Expiration</th>
+                            <th>Hits</th>
+                            <th>Actions</th>
                         </tr>
-                    ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        {urls.map((u) => (
+                            <tr key={u.shortCode}>
+                                <td>
+                                    <a
+                                        href={`http://localhost:8080/${u.shortCode}`}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        {u.shortCode}
+                                    </a>
+                                </td>
+                                <td className="long-url">{u.longUrl}</td>
+                                <td>{new Date(u.createdAt).toLocaleString()}</td>
+                                <td>
+                                    {u.expirationAt
+                                        ? new Date(u.expirationAt).toLocaleString()
+                                        : "-"}
+                                </td>
+                                <td>{u.hits}</td>
+                                <td>
+                                    <button
+                                        className="delete-button"
+                                        onClick={() => handleDeleteClick(u.shortCode)}
+                                    >
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
+                </div>
             )}
 
             <Modal

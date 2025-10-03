@@ -9,29 +9,33 @@ import "./styles.css";
 
 function App() {
     return (
-        <BrowserRouter>
-            <Navbar />
-            <Routes>
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/login" element={<Login />} />
-                <Route
-                    path="/"
-                    element={
-                        <ProtectedRoute>
-                            <Dashboard />
-                        </ProtectedRoute>
-                    }
-                />
-                <Route
-                    path="/stats"
-                    element={
-                        <ProtectedRoute>
-                            <Stats />
-                        </ProtectedRoute>
-                    }
-                />
-            </Routes>
-        </BrowserRouter>
+        <div className="app-container">
+            <BrowserRouter>
+                <Navbar />
+                <main className="main-content">
+                    <Routes>
+                        <Route path="/signup" element={<Signup />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route
+                            path="/"
+                            element={
+                                <ProtectedRoute>
+                                    <Dashboard />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/stats"
+                            element={
+                                <ProtectedRoute>
+                                    <Stats />
+                                </ProtectedRoute>
+                            }
+                        />
+                    </Routes>
+                </main>
+            </BrowserRouter>
+        </div>
     );
 }
 
